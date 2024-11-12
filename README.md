@@ -198,8 +198,6 @@ You will be prompted to enter a password, and the private key will be encrypted.
 - **Mukund Khandelwal**: [GitHub Profile](https://github.com/mukvnd)  
 - **Spoorthi C Bhoji**: [GitHub Profile](https://github.com/spoorthibhoji)  
 
-Feel free to contribute and submit issues via the repository!  
-
 --- 
 
 
