@@ -100,7 +100,9 @@ evoting-cryptography-cybersec/
    Open your browser and navigate to:  
    ```
    http://127.0.0.1:5000
-   ```  
+   ```
+6. **VOTER ID**:  
+   Either use voter id as 'voter1', 'voter2' or 'voter3' (check in validation server/voter_data.json). By default, voter3 has already voted, and should give an appropriate error.
 
 ---
 
