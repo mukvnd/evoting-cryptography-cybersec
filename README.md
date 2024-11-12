@@ -221,12 +221,22 @@ evoting-cryptography-cybersec/
     - **Verification Server**: `http://127.0.0.1:5001`
     - **Tally Server**: `http://127.0.0.1:5002`
 
+### **Assumptions**
+
+- The system assumes that both the client and the server have their own **public** and **private** key pairs, which are used for secure voting and identity verification.
+- The keys can be generated using OpenSSL, and are saved in PEM format for compatibility with the system.
+- The environment of the voter (face detection and sound level) must meet specific thresholds before allowing the vote to be submitted.
+- The **addresses** of the **Verification Server** and **Tally Server** are assumed to be configured as:
+    - **Verification Server**: `http://127.0.0.1:5001`
+    - **Tally Server**: `http://127.0.0.1:5002`
+
+---
 ## **Future Enhancements**  
 
-1. Multi-language support for user interfaces.  
-2. Integration with blockchain for immutable voting records.  
-3. Biometric-based authentication for enhanced voter validation.  
-4. Scalability improvements for nationwide voting.  
+1. Integration with blockchain for immutable voting records.  
+2. Biometric-based authentication for enhanced voter validation.  
+3. Scalability improvements for nationwide voting.
+4. Better cryptographic methods for enhanced security.
 
 ---
 
@@ -240,20 +250,3 @@ Feel free to contribute and submit issues via the repository!
 
 
 
-
-Here’s the additional assumption you can add to the **Assumptions** section in the README:
-
----
-
-### **Assumptions**
-
-- The system assumes that both the client and the server have their own **public** and **private** key pairs, which are used for secure voting and identity verification.
-- The keys can be generated using OpenSSL, and are saved in PEM format for compatibility with the system.
-- The environment of the voter (face detection and sound level) must meet specific thresholds before allowing the vote to be submitted.
-- The **addresses** of the **Verification Server** and **Tally Server** are assumed to be configured as:
-    - **Verification Server**: `http://127.0.0.1:5001`
-    - **Tally Server**: `http://127.0.0.1:5002`
-
----
-
-This adds the assumption regarding the server addresses to the README.
