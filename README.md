@@ -181,7 +181,7 @@ To generate the public key from the private key and save it to a file named `pub
 openssl rsa -in private_key.pem -pubout -out public_key.pem
 ```
 
-### **3. Generate ECDSA Keys
+### **3. Generate ECDSA Keys**
 
 #### **Generate ECDSA Private Key:**
 
