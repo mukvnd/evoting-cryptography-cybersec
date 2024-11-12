@@ -29,6 +29,8 @@ def verify_voter():
 
     found = False
     for voter in voters_data['voters']:
+        print(voter['id'])
+        print(voter_id)
         if voter['id'] == voter_id:
             print(voter['id'])
             found = True
