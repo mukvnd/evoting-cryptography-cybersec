@@ -32,44 +32,6 @@ It additionally performs **environment checks**, including **face detection** us
 
 
 ---
-
-### **Flow of the Program**
-
-The program operates in a multi-step process, where the voter interacts with the system, their identity is verified, and their vote is securely cast and counted.
-
-1. **Voter Login**:
-   - The voter navigates to the **E-Voting Portal** and is presented with a form asking for their **Voter ID** and the **candidate** they wish to vote for.
-   - Before the voter can submit their vote, the environment is checked to ensure the conditions are safe for voting.
-
-2. **Environment Check**:
-   - **Face Detection**: The system uses **Haar Cascade face detection** to ensure that exactly one face is detected in the environment. If more than one face is detected or if no face is detected, the voter will be denied access to vote.
-   - **Sound Level Detection**: The system uses **PyAudio** to measure the ambient sound level. If the sound level exceeds a pre-defined threshold, the voter is not allowed to vote, as excessive background noise could indicate fraudulent activity.
-
-3. **Vote Submission**:
-   - If the environment check passes (exactly one face is detected, and sound level is below the threshold), the voter can proceed to submit their vote.
-   - The voter signs their vote using their **private key** to ensure it is authentic and tamper-proof.
-   - A **digital signature** is created by hashing the **Voter ID** (using SHA-256) and then signing it with the **private key** of the voter. This signed hash ensures that the vote comes from a verified voter and prevents anyone from altering the vote after submission.
-   - The **public key** of the voter (corresponding to the private key used for signing) is also sent to the verification server to enable the server to verify the authenticity of the signature.
-
-4. **Vote Verification**:
-   - The signed vote and the public key of the voter are sent to the **Verification Server**.
-   - The Verification Server uses the public key to verify the signature of the vote. This confirms that the vote has been signed by the rightful voter and that it has not been tampered with.
-   - If the verification is successful, the voter is marked as **voted** on the server, and they can proceed to cast their vote.
-
-5. **Vote Encryption**:
-   - Once the vote is verified, it is then **encrypted** before being sent to the **Tally Server**.
-   - The **Tally Server** has a **public key** that is used to encrypt the vote. The voter’s vote is encrypted using this public key, ensuring that only the **Tally Server** (which possesses the corresponding private key) can decrypt and read the vote.
-   - The encrypted vote is then securely transmitted to the **Tally Server**.
-
-6. **Vote Tallying**:
-   - Upon receiving the encrypted vote, the **Tally Server** decrypts it using its **private key**.
-   - The Tally Server increments the vote count for the chosen candidate and returns a success message to the voter.
-
-7. **Vote Confirmation**:
-   - If the vote submission is successful, the voter is notified with a confirmation message, and they are redirected to a success page.
-   - In case of any failure during the process (e.g., if the voter has already voted, or if there is a problem with verification), the voter will be shown an error message explaining the reason for failure.
-
----
 ## **Project Structure**  
 
 ```
@@ -211,16 +173,7 @@ You will be prompted to enter a password, and the private key will be encrypted.
 
 ---
 
-## Assumptions
-- The system assumes that both the client and the server have their own **public** and **private** key pairs, which are used for secure voting and identity verification.
-- The keys can be generated using OpenSSL, and are saved in PEM format for compatibility with the system.
-- The environment of the voter (face detection and sound level) must meet specific thresholds before allowing the vote to be submitted.
-- The **addresses** of the **Verification Server** and **Tally Server** are assumed to be configured as:
-    - **Verification Server**: `http://127.0.0.1:5001`
-    - **Tally Server**: `http://127.0.0.1:5002`
-
-### **Assumptions**
-
+## **Assumptions**
 - The system assumes that both the client and the server have their own **public** and **private** key pairs, which are used for secure voting and identity verification.
 - The keys can be generated using OpenSSL, and are saved in PEM format for compatibility with the system.
 - The environment of the voter (face detection and sound level) must meet specific thresholds before allowing the vote to be submitted.
@@ -229,6 +182,7 @@ You will be prompted to enter a password, and the private key will be encrypted.
     - **Tally Server**: `http://127.0.0.1:5002`
 
 ---
+
 ## **Future Enhancements**  
 
 1. Integration with blockchain for immutable voting records.  
