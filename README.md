@@ -70,66 +70,6 @@ The program operates in a multi-step process, where the voter interacts with the
    - In case of any failure during the process (e.g., if the voter has already voted, or if there is a problem with verification), the voter will be shown an error message explaining the reason for failure.
 
 ---
-
-## **Generating Keys Using OpenSSL (NOT REQUIRED, ALREADY PRESENT)**
-
-### **1. Install OpenSSL**
-
-OpenSSL is required to generate the public/private key pairs. To install it on a Linux machine, use the following commands:
-
-```bash
-sudo apt update
-sudo apt install openssl
-```
-
-### **2. Generate RSA Keys**
-
-#### **Generate RSA Private Key:**
-
-To generate a 2048-bit RSA private key and save it in a file named `private_key.pem`:
-
-```bash
-openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
-```
-
-#### **Extract the Corresponding Public Key:**
-
-To generate the public key from the private key and save it to a file named `public_key.pem`:
-
-```bash
-openssl rsa -in private_key.pem -pubout -out public_key.pem
-```
-
-### **3. Generate ECDSA Keys
-
-#### **Generate ECDSA Private Key:**
-
-To generate an ECDSA private key using the `prime256v1` curve (standard for many systems):
-
-```bash
-openssl ecparam -genkey -name prime256v1 -out private_key.pem
-```
-
-#### **Extract the Corresponding ECDSA Public Key:**
-
-To generate the public key from the private key:
-
-```bash
-openssl ec -in private_key.pem -pubout -out public_key.pem
-```
-
-### **4. Encrypt Private Key (Password Protected)**
-
-To generate an encrypted private key (password protected), you can use:
-
-```bash
-openssl genpkey -algorithm RSA -aes256 -out private_key.pem -pkeyopt rsa_keygen_bits:2048
-```
-
-You will be prompted to enter a password, and the private key will be encrypted.
-
----
-
 ## **Project Structure**  
 
 ```
@@ -213,6 +153,64 @@ evoting-cryptography-cybersec/
 | 500            | Internal server error            | Check server logs for more details on the issue.        |   
 
 ---
+
+## **Generating Keys Using OpenSSL (NOT REQUIRED, ALREADY PRESENT)**
+
+### **1. Install OpenSSL**
+
+OpenSSL is required to generate the public/private key pairs. To install it on a Linux machine, use the following commands:
+
+```bash
+sudo apt update
+sudo apt install openssl
+```
+
+#### **Generate RSA Private Key:**
+
+To generate a 2048-bit RSA private key and save it in a file named `private_key.pem`:
+
+```bash
+openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+```
+
+#### **Extract the Corresponding Public Key:**
+
+To generate the public key from the private key and save it to a file named `public_key.pem`:
+
+```bash
+openssl rsa -in private_key.pem -pubout -out public_key.pem
+```
+
+### **3. Generate ECDSA Keys
+
+#### **Generate ECDSA Private Key:**
+
+To generate an ECDSA private key using the `prime256v1` curve:
+
+```bash
+openssl ecparam -genkey -name prime256v1 -out private_key.pem
+```
+
+#### **Extract the Corresponding ECDSA Public Key:**
+
+To generate the public key from the private key:
+
+```bash
+openssl ec -in private_key.pem -pubout -out public_key.pem
+```
+
+### **4. Encrypt Private Key (Password Protected)**
+
+To generate an encrypted private key (password protected), you can use:
+
+```bash
+openssl genpkey -algorithm RSA -aes256 -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+```
+
+You will be prompted to enter a password, and the private key will be encrypted.
+
+---
+
 ## Assumptions
 - The system assumes that both the client and the server have their own **public** and **private** key pairs, which are used for secure voting and identity verification.
 - The keys can be generated using OpenSSL, and are saved in PEM format for compatibility with the system.
