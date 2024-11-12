@@ -164,7 +164,7 @@ OpenSSL is required to generate the public/private key pairs. To install it on a
 sudo apt update
 sudo apt install openssl
 ```
-
+### **3. Generate RSA Keys**
 #### **Generate RSA Private Key:**
 
 To generate a 2048-bit RSA private key and save it in a file named `private_key.pem`:
