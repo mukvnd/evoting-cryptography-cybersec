@@ -1,0 +1,16 @@
+{
+    "voters": [
+        {
+            "id": "voter1",
+            "voted": false
+        },
+        {
+            "id": "voter2",
+            "voted": false
+        },
+        {
+            "id": "voter3",
+            "voted": true
+        }
+    ]
+}
